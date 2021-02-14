@@ -1,4 +1,4 @@
-import Header from "../src/componentes/Molecules/Header";
+import Header from "../src/components/Molecules/Header";
 
 export default function Faq() {
   return (
