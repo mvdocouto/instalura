@@ -1,6 +1,8 @@
 import React from "react";
-
 import { Logo } from "../../Atom/Logo";
+import { Button } from "../../Atom/Button"
+import { Text } from "../../Atom/Text";
+
 import { MenuWrapper } from "./style";
 
 export default function Header() {
@@ -17,15 +19,21 @@ export default function Header() {
         <Logo />
       </MenuWrapper.LeftSide>
       <MenuWrapper.CentralSide as="ul">
-        {listLinks.map((link) => (
-          <li key={link.url}>
-            <a href={link.url}>{link.name}</a>
+        {listLinks.map((link, index) => (
+          <li key={index}>
+            <Text variant="smallestException" tag="a" href={link.url}>
+              {link.name}
+            </Text>
           </li>
         ))}
       </MenuWrapper.CentralSide>
       <MenuWrapper.RightSide>
-        <button>Cadastar</button>
-        <button>Entrar</button>
+        <Button type="button" ghost variant="secondary.main">
+          Entrar
+        </Button>
+        <Button type="button" variant="primary.main">
+          Cadastrar
+        </Button>
       </MenuWrapper.RightSide>
     </MenuWrapper>
   );
