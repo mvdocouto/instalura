@@ -1,16 +1,15 @@
-import React from "react";
-import { Logo } from "../../Atom/Logo";
-import { Button } from "../../Atom/Button"
-import { Text } from "../../Atom/Text";
+import React from 'react';
+import Logo from '../../Atom/Logo';
+import Button from '../../Atom/Button';
+import { Text } from '../../Atom/Text';
 
-import { MenuWrapper } from "./style";
+import MenuWrapper from './style';
 
 export default function Header() {
-
   const listLinks = [
-    { url: "/", name: "Home" },
-    { url: "/faq", name: "Perguntas Frequentes" },
-    { url: "/sobre", name: "Sobre" },
+    { url: '/', name: 'Home' },
+    { url: '/faq', name: 'Perguntas Frequentes' },
+    { url: '/sobre', name: 'Sobre' },
   ];
 
   return (
@@ -19,8 +18,8 @@ export default function Header() {
         <Logo />
       </MenuWrapper.LeftSide>
       <MenuWrapper.CentralSide as="ul">
-        {listLinks.map((link, index) => (
-          <li key={index}>
+        {listLinks.map((link) => (
+          <li key={link.url}>
             <Text variant="smallestException" tag="a" href={link.url}>
               {link.name}
             </Text>

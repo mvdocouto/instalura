@@ -1,5 +1,5 @@
-import React from "react";
-import { FooterWrapper } from "./style";
+import React from 'react';
+import FooterWrapper from './style';
 
 export default function Footer(props) {
   return (
@@ -12,7 +12,8 @@ export default function Footer(props) {
         />
       </a>
       <p>
-        Orgulhosamente criado durante o{" "}
+        Orgulhosamente criado durante o
+        {' '}
         <a href="https://www.alura.com.br/">
           <span>Bootcamp Alura JAM Stack</span>
         </a>
