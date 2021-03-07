@@ -1,11 +1,13 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+
 import Logo from '../../Atom/Logo';
 import Button from '../../Atom/Button';
 import { Text } from '../../Atom/Text';
 
 import MenuWrapper from './style';
 
-export default function Header() {
+export default function Header({ openModal }) {
   const listLinks = [
     { url: '/', name: 'Home' },
     { url: '/faq', name: 'Perguntas Frequentes' },
@@ -30,10 +32,18 @@ export default function Header() {
         <Button type="button" ghost variant="secondary.main">
           Entrar
         </Button>
-        <Button type="button" variant="primary.main">
+        <Button
+          type="button"
+          variant="primary.main"
+          onClick={() => openModal()}
+        >
           Cadastrar
         </Button>
       </MenuWrapper.RightSide>
     </MenuWrapper>
   );
 }
+
+Header.propTypes = {
+  openModal: PropTypes.func.isRequired,
+};

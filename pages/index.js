@@ -1,25 +1,46 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Header from '../src/components/Molecules/Header';
 import Footer from '../src/components/Molecules/Footer';
 import { Text } from '../src/components/Atom/Text';
+import Modal from '../src/components/Atom/Modal';
 import Button from '../src/components/Atom/Button';
 import Grid from '../src/components/Organisms/Grid';
+import Box from '../src/components/Organisms/Box';
+import FormCadastro from '../src/components/Molecules/FormCadastro';
 
 export default function Home() {
+  const [isModalOpen, setModalState] = useState(false);
+
+  const openModal = () => {
+    setModalState(!isModalOpen); // novo state sendo atribuido
+  };
+
   return (
-    <div
-      style={{
-        flex: '1',
-        display: 'flex',
-        flexWrap: 'wrap',
-        flexDirection: 'column',
-        justifyContent: 'space-between',
-      }}
+    <Box
+      flex="1"
+      display="flex"
+      flexWrap="wrap"
+      flexDirection="column"
+      justifyContent="space-between"
+      backgroundImage="url(/images/bubbles.svg)"
+      backgroundRepeat="no-repeat"
+      backgroundPosition="bottom right"
     >
-      <Header />
+      <Modal
+        isOpen={isModalOpen}
+        onClose={() => {
+          setModalState(false);
+        }}
+      >
+        {(propsDoModal) => (
+          <FormCadastro propsDoModal={propsDoModal} />
+        )}
+
+      </Modal>
+      <Header openModal={openModal} />
       <Grid.Container>
         <Grid.Row>
-          <Grid.Col offset={1} value={{ xs: 12, md: 5 }}>
+          <Grid.Col offset={{ xs: 0, md: 1 }} value={{ xs: 12, md: 5 }}>
             <div>
               <Text
                 variant="title"
@@ -53,6 +74,7 @@ export default function Home() {
                   md: 'initial',
                 }}
                 display="block"
+                onClick={() => openModal()}
               >
                 Cadastrar
               </Button>
@@ -68,6 +90,6 @@ export default function Home() {
         </Grid.Row>
       </Grid.Container>
       <Footer />
-    </div>
+    </Box>
   );
 }

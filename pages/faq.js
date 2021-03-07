@@ -1,6 +1,6 @@
-import Header from "../src/components/Molecules/Header";
-import Footer from "../src/components/Molecules/Footer";
-
+import React from 'react';
+import Header from '../src/components/Molecules/Header';
+import Footer from '../src/components/Molecules/Footer';
 
 export default function Faq() {
   return (

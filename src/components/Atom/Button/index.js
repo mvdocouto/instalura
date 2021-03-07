@@ -30,6 +30,16 @@ const Button = styled.button`
     opacity: 0.5;
   }
 
+  &:disabled {
+    cursor: not-allowed;
+    opacity: .2;
+  }
+  
+  ${({ fullWidth }) => fullWidth && css`
+    width: 100%;
+  `};
+
+
   ${propToStyle('margin')}
   ${propToStyle('display')}
 
