@@ -1,46 +1,36 @@
-import React, { useState } from 'react';
-import Header from '../src/components/Molecules/Header';
-import Footer from '../src/components/Molecules/Footer';
+import React, { useContext } from 'react';
+
 import { Text } from '../src/components/Atom/Text';
-import Modal from '../src/components/Atom/Modal';
 import Button from '../src/components/Atom/Button';
 import Grid from '../src/components/Organisms/Grid';
+import pageHOC from '../src/hoc';
+import { PageWrapperContext } from '../src/components/Organisms/PageWrapper';
 import Box from '../src/components/Organisms/Box';
-import FormCadastro from '../src/components/Molecules/FormCadastro';
 
-export default function Home() {
-  const [isModalOpen, setModalState] = useState(false);
-
-  const openModal = () => {
-    setModalState(!isModalOpen); // novo state sendo atribuido
-  };
+const HomeScreen = () => {
+  const pageWrapperContext = useContext(PageWrapperContext);
 
   return (
     <Box
-      flex="1"
       display="flex"
-      flexWrap="wrap"
       flexDirection="column"
-      justifyContent="space-between"
-      backgroundImage="url(/images/bubbles.svg)"
-      backgroundRepeat="no-repeat"
-      backgroundPosition="bottom right"
+      flex="1"
     >
-      <Modal
-        isOpen={isModalOpen}
-        onClose={() => {
-          setModalState(false);
+      <Grid.Container
+        marginTop={{
+          xs: '32px',
+          md: '75px',
         }}
       >
-        {(propsDoModal) => (
-          <FormCadastro propsDoModal={propsDoModal} />
-        )}
-
-      </Modal>
-      <Header openModal={openModal} />
-      <Grid.Container>
         <Grid.Row>
-          <Grid.Col offset={{ xs: 0, md: 1 }} value={{ xs: 12, md: 5 }}>
+          <Grid.Col
+            offset={{ xs: 0, md: 1 }}
+            value={{ xs: 12, md: 5 }}
+            display="flex"
+            alignItems="flex-start"
+            justifyContent="center"
+            flexDirection="column"
+          >
             <div>
               <Text
                 variant="title"
@@ -74,7 +64,7 @@ export default function Home() {
                   md: 'initial',
                 }}
                 display="block"
-                onClick={() => openModal()}
+                onClick={() => pageWrapperContext.toogleModal()}
               >
                 Cadastrar
               </Button>
@@ -89,7 +79,19 @@ export default function Home() {
           </Grid.Col>
         </Grid.Row>
       </Grid.Container>
-      <Footer />
     </Box>
   );
-}
+};
+
+export default pageHOC(HomeScreen, {
+  pageWrapperProps: {
+    seoProps: {
+      headTitle: 'Home',
+    },
+    pageBoxProps: {
+      backgroundImage: 'url(/images/bubbles.svg)',
+      backgroundRepeat: 'no-repeat',
+      backgroundPosition: 'bottom right',
+    },
+  },
+});

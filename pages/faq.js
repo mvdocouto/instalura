@@ -1,13 +1,123 @@
 import React from 'react';
-import Header from '../src/components/Molecules/Header';
-import Footer from '../src/components/Molecules/Footer';
+import PropTypes from 'prop-types';
+import pageHOC from '../src/hoc';
 
-export default function Faq() {
+import { Text } from '../src/components/Atom/Text';
+import Box from '../src/components/Organisms/Box';
+import Grid from '../src/components/Organisms/Grid';
+
+const FAQScreen = ({ faqCategories }) => (
+  <Box
+    display="flex"
+    flexDirection="column"
+    flex="1"
+  >
+    <Grid.Container style={{ flex: 1 }}>
+      <Grid.Row
+        marginTop={{ xs: '32px', md: '100px' }}
+        marginBottom={{ xs: '32px', md: '100px' }}
+        justifyContent="center"
+      >
+        <Grid.Col
+          value={{ xs: 12, md: 12 }}
+          flex={1}
+        >
+          <Text
+            variant="title"
+            tag="h2"
+            color="tertiary.main"
+            textAlign="center"
+          >
+            Como podemos te ajudar?
+          </Text>
+        </Grid.Col>
+      </Grid.Row>
+      <Grid.Row
+        alignItems="flex-start"
+        justifyContent="center"
+        flex="1"
+      >
+        {
+            faqCategories && faqCategories.map((category) => (
+              <Grid.Col
+                value={{ xs: 12, md: 3 }}
+                flex={1}
+                key={category.title}
+              >
+                <Box
+                  width="100%"
+                >
+                  <Text
+                    variant="subTitle"
+                    tag="h2"
+                    color="tertiary.main"
+                    marginBottom="26px"
+                  >
+                    {category.title}
+                  </Text>
+
+                  <Box
+                    as="ul"
+                    padding="0"
+                    listStyle="none"
+                  >
+                    {category.questions.map((question) => (
+                      <li key={question.title}>
+                        <Text
+                          href={`/faq/${question.slug}`}
+                          variant="paragraph1"
+                          tag="h2"
+                          color="tertiary.light"
+                        >
+                          {question.title}
+                        </Text>
+                      </li>
+                    ))}
+                  </Box>
+                </Box>
+              </Grid.Col>
+            ))
+          }
+      </Grid.Row>
+    </Grid.Container>
+  </Box>
+);
+
+FAQScreen.propTypes = {
+  faqCategories: PropTypes.arrayOf(PropTypes.shape({
+    title: PropTypes.string,
+    slug: PropTypes.string,
+    questions: PropTypes.arrayOf(PropTypes.shape({
+      title: PropTypes.string,
+      slug: PropTypes.string,
+      description: PropTypes.string,
+    })),
+  })).isRequired,
+};
+
+function FAQPage({ faqCategories }) {
   return (
-    <div>
-      <Header />
-      <h1>Perguntas Frequentes</h1>
-      <Footer />
-    </div>
+    <FAQScreen faqCategories={faqCategories} />
   );
+}
+FAQPage.propTypes = FAQScreen.propTypes;
+
+export default pageHOC(FAQPage, {
+  pageWrapperProps: {
+    seoProps: {
+      headTitle: 'Perguntas Frequentes',
+    },
+  },
+});
+
+export async function getStaticProps() {
+  const faqCategories = await fetch('https://instalura-api.vercel.app/api/content/faq')
+    .then((respostaDoServer) => respostaDoServer.json())
+    .then((respostaConvertida) => respostaConvertida.data);
+
+  return {
+    props: {
+      faqCategories,
+    }, // will be passed to the page component as props
+  };
 }
