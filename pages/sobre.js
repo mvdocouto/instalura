@@ -1,22 +1,17 @@
 import React from 'react';
-import Header from '../src/components/Molecules/Header';
-import Footer from '../src/components/Molecules/Footer';
+import pageHOC from '../src/hoc';
 
-export default function About() {
-  return (
-    <div
-      style={{
-        flex: '1',
-        display: 'flex',
-        flexWrap: 'wrap',
-        flexDirection: 'column',
-        justifyContent: 'space-between',
-      }}
-    >
+const AboutScreen = () => (<h1>Pagina Sobre</h1>);
 
-      <Header />
-      <h1>Pagina Sobre</h1>
-      <Footer />
-    </div>
-  );
-}
+export default pageHOC(AboutScreen, {
+  pageWrapperProps: {
+    seoProps: {
+      headTitle: 'Home',
+    },
+    pageBoxProps: {
+      backgroundImage: 'url(/images/bubbles.svg)',
+      backgroundRepeat: 'no-repeat',
+      backgroundPosition: 'bottom right',
+    },
+  },
+});
