@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import pageHOC from '../src/hoc';
+import pageHOC from '../../src/hoc';
 
-import { Text } from '../src/components/Atom/Text';
-import Box from '../src/components/Organisms/Box';
-import Grid from '../src/components/Organisms/Grid';
+import { Text } from '../../src/components/Atom/Text';
+import Box from '../../src/components/Organisms/Box';
+import Grid from '../../src/components/Organisms/Grid';
 
 const FAQScreen = ({ faqCategories }) => (
   <Box

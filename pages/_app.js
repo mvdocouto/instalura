@@ -1,9 +1,8 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
-import PropTypes from 'prop-types';
-// eslint-disable-next-line import/no-unresolved
 import Head from 'next/head';
 
+// eslint-disable-next-line react/prop-types
 export default function App({ Component, pageProps }) {
   return (
     <>
@@ -18,8 +17,3 @@ export default function App({ Component, pageProps }) {
     </>
   );
 }
-
-App.propTypes = {
-  Component: PropTypes.node.isRequired,
-  pageProps: PropTypes.shape.isRequired,
-};
