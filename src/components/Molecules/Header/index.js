@@ -29,7 +29,7 @@ export default function Header({ openModal }) {
         ))}
       </MenuWrapper.CentralSide>
       <MenuWrapper.RightSide>
-        <Button type="button" ghost variant="secondary.main">
+        <Button type="button" ghost variant="secondary.main" href="/app/login">
           Entrar
         </Button>
         <Button

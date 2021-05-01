@@ -1,6 +1,7 @@
 import React from 'react';
+import pageHOC from '../../src/hoc';
 
-export default function ProfilePage() {
+function ProfilePage() {
   return (
     <div>
       Página de Profile!
@@ -8,3 +9,14 @@ export default function ProfilePage() {
     </div>
   );
 }
+
+export default pageHOC(ProfilePage, {
+  pageWrapperProps: {
+    seoProps: {
+      headTitle: 'Profile',
+    },
+    menuProps: {
+      display: true,
+    },
+  },
+});
