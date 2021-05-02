@@ -22,9 +22,9 @@ async function HttpClient(url, { headers, body, ...options }) {
 
 const BASE_URL = isStagingEnv
   // Back End de DEV
-  ? 'https://instalura-api-git-master.omariosouto.vercel.app'
+  ? 'https://instalura-api-git-master-omariosouto.vercel.app/api/login'
   // Back End de PROD
-  : 'https://instalura-api-git-master-omariosouto.vercel.app';
+  : 'https://instalura-api-git-master-omariosouto.vercel.app/api/login';
 
 export const loginService = {
   async login(
@@ -32,7 +32,7 @@ export const loginService = {
     setCookieModule = setCookie,
     HttpClienteModule = HttpClient,
   ) {
-    return HttpClienteModule(`${BASE_URL}/api/login`, {
+    return HttpClienteModule('https://instalura-api-git-master-omariosouto.vercel.app/api/login', {
       method: 'POST',
       body: {
         username, // 'omariosouto'
