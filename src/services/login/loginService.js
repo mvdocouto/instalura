@@ -1,6 +1,6 @@
 /* eslint-disable import/prefer-default-export */
 import { setCookie, destroyCookie } from 'nookies';
-import { isStagingEnv } from '../../../utils/env/isStagingEnv';
+import isStagingEnv from '../../../utils/env/isStagingEnv';
 
 async function HttpClient(url, { headers, body, ...options }) {
   return fetch(url, {
@@ -20,9 +20,9 @@ async function HttpClient(url, { headers, body, ...options }) {
     });
 }
 
-// const BASE_URL = isStagingEnv
-//   ? 'https://instalura-api-git-master-omariosouto.vercel.app/api/login'
-//   : 'https://instalura-api-git-master-omariosouto.vercel.app/api/login';
+const BASE_URL = isStagingEnv
+  ? 'https://instalura-api-git-master-omariosouto.vercel.app/api/login'
+  : 'https://instalura-api-git-master-omariosouto.vercel.app/api/login';
 
 export const loginService = {
   async login(
@@ -30,7 +30,7 @@ export const loginService = {
     setCookieModule = setCookie,
     HttpClienteModule = HttpClient,
   ) {
-    return HttpClienteModule('https://instalura-api-git-master-omariosouto.vercel.app/api/login', {
+    return HttpClienteModule(`${BASE_URL}`, {
       method: 'POST',
       body: {
         username, // 'omariosouto'
