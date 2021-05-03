@@ -32,7 +32,7 @@ export const loginService = {
     setCookieModule = setCookie,
     HttpClienteModule = HttpClient,
   ) {
-    return HttpClienteModule('https://instalura-api-git-master-omariosouto.vercel.app/api/login', {
+    return HttpClienteModule(`${BASE_URL}`, {
       method: 'POST',
       body: {
         username, // 'omariosouto'
