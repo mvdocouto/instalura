@@ -30,7 +30,7 @@ export const loginService = {
     setCookieModule = setCookie,
     HttpClienteModule = HttpClient,
   ) {
-    return HttpClienteModule(`${BASE_URL}`, {
+    return HttpClienteModule(BASE_URL, {
       method: 'POST',
       body: {
         username, // 'omariosouto'

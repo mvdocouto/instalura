@@ -1,7 +1,16 @@
-import React from 'react';
+import AboutScreen, { getContent } from '../src/components/Screens/AboutScreen';
+
 import pageHOC from '../src/hoc';
 
-const AboutScreen = () => (<h1>Pagina Sobre</h1>);
+export async function getStaticProps() {
+  const messages = await getContent();
+
+  return {
+    props: {
+      messages,
+    },
+  };
+}
 
 export default pageHOC(AboutScreen, {
   pageWrapperProps: {

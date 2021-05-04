@@ -1,3 +1,4 @@
+/* eslint-disable import/prefer-default-export */
 const isServer = typeof window === 'undefined';
 
 const isStagingEnv = isServer
