@@ -1,9 +1,9 @@
+/* eslint-disable import/prefer-default-export */
 import { GraphQLClient } from 'graphql-request';
 
-const clientGraphQL = () => {
+export function CMSGraphQLClient() {
   const TOKEN = process.env.DATO_CMS_TOKEN;
   const DatoCMSURL = process.env.DATO_CMS_URL;
-  // const DatoCMSURL = 'https://graphql.datocms.com/';
 
   const client = new GraphQLClient(DatoCMSURL, {
     headers: {
@@ -11,7 +11,14 @@ const clientGraphQL = () => {
     },
   });
 
-  return client;
-};
-
-export default clientGraphQL;
+  return {
+    async query({ query }) {
+      const messages = await client.request(query);
+      return {
+        data: {
+          messages,
+        },
+      };
+    },
+  };
+}

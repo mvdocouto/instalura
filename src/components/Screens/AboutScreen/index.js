@@ -1,8 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Box from '../Organisms/Box';
-import Grid from '../Organisms/Grid';
-import { Text } from '../Atom/Text';
+import Box from '../../Organisms/Box';
+import Grid from '../../Organisms/Grid';
+import { Text } from '../../Atom/Text';
+
+export { getContent } from './getContent';
 
 export default function AboutScreen({ messages }) {
   return (
