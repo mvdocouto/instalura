@@ -1,6 +1,6 @@
 /* eslint-disable import/prefer-default-export */
 import { setCookie, destroyCookie } from 'nookies';
-import { isStagingEnv } from '../../../utils/env/isStagingEnv';
+import isStagingEnv from '../../../utils/env/isStagingEnv';
 
 async function HttpClient(url, { headers, body, ...options }) {
   return fetch(url, {
@@ -21,9 +21,7 @@ async function HttpClient(url, { headers, body, ...options }) {
 }
 
 const BASE_URL = isStagingEnv
-  // Back End de DEV
   ? 'https://instalura-api-git-master-omariosouto.vercel.app/api/login'
-  // Back End de PROD
   : 'https://instalura-api-git-master-omariosouto.vercel.app/api/login';
 
 export const loginService = {
